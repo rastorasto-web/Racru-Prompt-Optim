@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BALANCED HR | AI Agent Master Šablóna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+
+        :root {
+            --bhr-red: #E60000;
+            --bhr-red-hover: #C80000;
+            --bhr-red-dark: #AA0000;
+            --bhr-black: #000000;
+            --bhr-dark-gray: #333333;
+            --bhr-gray: #54595F;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f4;
+            color: var(--bhr-dark-gray);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--bhr-gray); 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--bhr-red); 
+        }
+
+        /* Flip Card Styles */
+        .flip-card {
+            background-color: transparent;
+            height: 350px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: left;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+
+        .flip-card.flipped .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front, .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .flip-card-front {
+            background-color: white;
+            color: var(--bhr-black);
+            border-top: 4px solid var(--bhr-red);
+        }
+
+        .flip-card-back {
+            background-color: var(--bhr-dark-gray);
+            color: white;
+            transform: rotateY(180deg);
+            border-top: 4px solid var(--bhr-red-hover);
+        }
+
+        /* Glowing Hover Effect */
+        .glow-hover {
+            transition: all 0.3s ease;
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 25px rgba(230, 0, 0, 0.25);
+            transform: translateY(-2px);
+            border-color: var(--bhr-red);
+        }
+
+        /* Copy Animation */
+        .copied-flash {
+            animation: flashHighlight 1s ease-out;
+        }
+
+        @keyframes flashHighlight {
+            0% { background-color: rgba(230, 0, 0, 0.1); border-color: var(--bhr-red); }
+            100% { background-color: transparent; border-color: #e5e7eb; }
+        }
+
+        .nav-active {
+            color: var(--bhr-red);
+            border-bottom: 2px solid var(--bhr-red);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- Header -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <!-- Logo Placeholder - Text based for now -->
+                    <div class="text-3xl font-extrabold tracking-tight text-gray-900">
+                        BALANCED <span style="color: var(--bhr-red)">HR</span>
+                    </div>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#case1" class="text-gray-900 hover:text-red-600 px-3 py-2 font-medium transition">I. Slabé JD</a>
+                    <a href="#case2" class="text-gray-900 hover:text-red-600 px-3 py-2 font-medium transition">II. Žiadne JD</a>
+                    <a href="#case3" class="text-gray-900 hover:text-red-600 px-3 py-2 font-medium transition">III. Finálny Prompt</a>
+                </nav>
+                <div class="flex items-center">
+                   <span class="bg-gray-100 text-gray-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded border border-gray-300">MASTER ŠABLÓNA RECRU</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="bg-gradient-to-r from-zinc-900 to-zinc-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl font-extrabold tracking-tight mb-4">
+                AI Agent <span style="color: var(--bhr-red)">Prompt Master</span>
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Nástroj pre personálnych konzultantov na tvorbu dokonalých promptov pre sémantické vyhľadávanie v RECRU.
+                <br><span class="text-sm text-gray-400 mt-2 block">Vyber si scenár, skopíruj šablónu a nechaj AI pracovať za teba.</span>
+            </p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+
+        <!-- CASE I: Slabé JD -->
+        <section id="case1" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4" style="background-color: var(--bhr-red);">I</div>
+                <h2 class="text-3xl font-bold text-gray-900">Máš JD, ale je slabé (Transformácia)</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Left: Explanation & Template -->
+                <div class="space-y-6">
+                    <p class="text-gray-600">
+                        Tento scenár použi, ak máš od klienta "špinavý" popis práce plný balastu. Cieľom je vyčistiť ho a získať štruktúrované dáta.
+                    </p>
+                    
+                    <!-- Code Block -->
+                    <div class="relative group">
+                        <div class="absolute -top-3 left-4 bg-gray-800 text-white text-xs px-2 py-1 rounded">Šablóna pre GPT</div>
+                        <div id="prompt1" class="bg-white border border-gray-200 rounded-lg p-6 shadow-sm hover:shadow-md transition duration-300 font-mono text-sm text-gray-700 whitespace-pre-wrap leading-relaxed">KONTEXT
+Som recruiter a potrebujem, aby si pretransformovala nekvalitné job description do čistej, profesionálnej verzie pre RECRU AI agenta.
+
+ÚLOHA
+Z tohto job description vyčisti balast, oprav nepresnosti a doplň chýbajúce tvrdé fakty:
+[VLOŽ SEM JD]
+
+POŽIADAVKY NA VÝSTUP
+1. Extrahuj reálne požiadavky a odstráň frázy bez hodnoty.
+2. Doplň senioritu, typ prostredia a tvrdé požiadavky.
+3. Lokalita: Ak ide o konkrétne mesto, vyhľadaj a uveď minimálne 30 obcí v okolí (dojazd 30-50km) pre nastavenie radiusu.
+
+FORMA VÝSTUPU
+A) Prečistené JD
+B) Kľúčové charakteristiky kandidáta
+C) Must-have kritériá
+D) Nice-to-have kritériá
+E) Zoznam 30 okolitých obcí
+F) Finálna verzia pre prompt</div>
+                        <button onclick="copyToClipboard('prompt1', this)" class="absolute top-4 right-4 text-gray-400 hover:text-red-600 transition bg-white p-2 rounded-full shadow-sm border border-gray-100 group-hover:border-red-200">
+                            <i class="fas fa-copy fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Flip Card Example -->
+                <div class="flip-card" onclick="this.classList.toggle('flipped')">
+                    <div class="flip-card-inner">
+                        <!-- Front -->
+                        <div class="flip-card-front glow-hover">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 flex items-center">
+                                    <i class="fas fa-file-excel text-red-600 mr-2"></i> Vstup (Slabé JD)
+                                </h3>
+                                <p class="text-sm text-gray-500 italic mb-4">Klikni pre otočenie</p>
+                                <div class="p-4 bg-red-50 text-red-900 rounded border border-red-100 text-sm">
+                                    "Hľadáme salesáka. Mal by vedieť robiť s B2B klientmi, cestovať, byť komunikatívny, riešiť obchod a mať auto. Ideálne z Trnavy."
+                                </div>
+                            </div>
+                            <div class="text-right text-red-600 font-bold text-sm uppercase tracking-wider">
+                                Zobraziť výsledok <i class="fas fa-arrow-right ml-1"></i>
+                            </div>
+                        </div>
+                        <!-- Back -->
+                        <div class="flip-card-back">
+                            <div>
+                                <h3 class="text-xl font-bold mb-2 text-white">Výstup AI</h3>
+                                <ul class="text-sm space-y-2 text-gray-300 list-disc pl-4">
+                                    <li><strong class="text-white">Rola:</strong> Sales Manager (B2B)</li>
+                                    <li><strong class="text-white">Must-have:</strong> 4-6 rokov praxe, Hunter aj Farmer, Vodičák B.</li>
+                                    <li><strong class="text-white">Lokalita:</strong> Trnava + 30 obcí (Biely Kostol, Zavar...)</li>
+                                </ul>
+                            </div>
+                            <div class="text-right text-white font-bold text-sm uppercase tracking-wider">
+                                <i class="fas fa-undo ml-1"></i> Späť
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-200">
+
+        <!-- CASE II: Žiadne JD -->
+        <section id="case2" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4" style="background-color: var(--bhr-red);">II</div>
+                <h2 class="text-3xl font-bold text-gray-900">Nemáš JD? (Tvorba z poznámok)</h2>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg border-l-4 border-gray-800 p-8 glow-hover">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="col-span-1">
+                        <h3 class="text-xl font-bold mb-4">Ako postupovať?</h3>
+                        <p class="text-gray-600 mb-4">
+                            Máš len poznámky z callu s hiring manažérom? Nechaj AI, nech ti vygeneruje štruktúru, ktorú potrebuje ATS.
+                        </p>
+                        <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4">
+                            <p class="text-sm text-yellow-800">
+                                <i class="fas fa-lightbulb mr-2"></i> <strong>Tip:</strong> Do inputu napíš všetko, čo vieš. Aj neformálne veci ("šéf je cholerik" -> "odolnosť voči stresu").
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-span-2 relative">
+                         <div class="absolute -top-3 right-4 bg-gray-800 text-white text-xs px-2 py-1 rounded">Šablóna pre GPT</div>
+                        <div id="prompt2" class="bg-gray-50 border border-gray-200 rounded-lg p-6 font-mono text-sm text-gray-700 whitespace-pre-wrap h-full">KONTEXT
+Som recruiter a potrebujem vytvoriť kompletné job description iba z mojich poznámok.
+
+MOJE INPUTY
+[VLOŽ SVOJE POZNÁMKY]
+
+ÚLOHA GPT
+Z mojich poznámok vytvor profesionálne JD pre RECRU AI agenta.
+
+VÝSTUP, KTORÝ POTREBUJEM
+A) Job summary
+B) Typické úlohy
+C) Must-have a Nice-to-have požiadavky
+D) Profil ideálneho kandidáta
+E) Kľúčové sémantické signály
+F) Ak ide o konkrétne mesto – vyhľadaj a uveď minimálne 30 vhodných obcí v okolí.
+G) Finálna verzia pre tvorbu promptu</div>
+                        <button onclick="copyToClipboard('prompt2', this)" class="absolute bottom-4 right-4 bg-white text-gray-600 hover:text-red-600 hover:border-red-600 border border-gray-300 px-4 py-2 rounded-md shadow-sm transition flex items-center font-semibold text-sm">
+                            <i class="fas fa-copy mr-2"></i> Kopírovať šablónu
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-gray-200">
+
+        <!-- CASE III: Finálny Prompt -->
+        <section id="case3" class="scroll-mt-24">
+            <div class="flex items-center mb-6">
+                <div class="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4" style="background-color: var(--bhr-red);">III</div>
+                <h2 class="text-3xl font-bold text-gray-900">Finálna Fáza: Prompt pre RECRU AI Agenta</h2>
+            </div>
+
+            <p class="text-gray-600 mb-6 max-w-4xl">
+                Toto je najdôležitejšia časť. Máš kvalitné dáta (z kroku I alebo II). Teraz potrebuješ inštrukciu pre Agenta, aby vedel <strong>koho</strong> a <strong>kde</strong> hľadať.
+            </p>
+
+            <!-- Grid Layout for Steps -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Step 1: Generator Prompt -->
+                <div class="lg:col-span-5 flex flex-col">
+                    <div class="bg-white p-6 rounded-t-xl border-t-4 border-gray-600 shadow-sm flex-grow">
+                        <h3 class="font-bold text-lg mb-2">1. Generovanie Inštrukcie</h3>
+                        <p class="text-sm text-gray-500 mb-4">Tento prompt daj do GPT spolu s kvalitným JD.</p>
+                        <div class="relative">
+                            <textarea readonly id="prompt3a" class="w-full h-64 bg-gray-50 border border-gray-200 rounded p-3 text-xs font-mono resize-none focus:outline-none text-gray-600">KONTEXT
+Rekru AI agent pracuje so semantickým vyhľadávaním. Potrebujem prompt, ktorý jednoznačne vysvetlí, koho má v systéme vyhľadať.
+
+ÚLOHA
+Na základe tohto JD vytvor prompt pre RECRU AI agenta:
+[VLOŽ KVALITNÉ JD]
+
+PROMPT MUSÍ OBSAHOVAŤ
+- Stručný opis pozície
+- Tvrdé požiadavky a kritériá pre vyradenie
+- Synonymá relevantných rolí a alternatívne job tituly
+- Senioritu a reálne skúsenosti
+- Must-have vs. nice-to-have
+- LOKALITA: Konkrétne mesto + zoznam minimálne 30 obcí v okolí (kritické pre vyhľadávanie)
+
+FORMA VÝSTUPU
+A) Popis roly
+B) Alternatívne názvy
+C) Hlavné zodpovednosti
+D) Kritické požiadavky
+E) Synonymné kariérne dráhy
+F) Must-have / Nice-to-have
+G) Zoznam obcí v okolí (pre copy-paste)
+H) FINÁLNY PROMPT pre RECRU AI agenta (text v úvodzovkách)</textarea>
+                            <button onclick="copyToClipboard('prompt3a', this)" class="absolute bottom-2 right-2 bg-white p-2 rounded shadow hover:text-red-600 border transition">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bg-gray-100 p-4 rounded-b-xl border-x border-b border-gray-200 text-center">
+                        <i class="fas fa-arrow-down text-gray-400"></i>
+                    </div>
+                </div>
+
+                <!-- Step 2: The Result (Visual Representation) -->
+                <div class="lg:col-span-7">
+                    <div class="bg-gradient-to-br from-red-50 to-white border border-red-100 rounded-xl shadow-lg p-1 glow-hover h-full">
+                        <div class="bg-white rounded-lg p-6 h-full flex flex-col">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-bold text-xl text-gray-900"><i class="fas fa-robot text-red-600 mr-2"></i>Výsledok: Finálny Prompt</h3>
+                                    <p class="text-sm text-gray-500">Toto vložíš priamo do RECRU</p>
+                                </div>
+                                <span class="bg-red-100 text-red-800 text-xs font-bold px-2 py-1 rounded">PRIPRAVENÉ NA POUŽITIE</span>
+                            </div>
+
+                            <div class="bg-gray-900 rounded-lg p-4 flex-grow relative group">
+                                <code id="finalResult" class="text-green-400 font-mono text-sm block leading-relaxed overflow-y-auto max-h-96">
+"Vyhľadaj kandidátov na pozíciu <span class="text-white">B2B Sales Manager</span>, alebo <span class="text-white">Account Executive</span>. Hľadaj ľudí so skúsenosťou <span class="text-yellow-400">4–6 rokov</span> v B2B predaji, ktorí dokážu samostatne uzatvárať obchodné prípady. Zameraj sa na kandidátov zo segmentu výroby.
+
+<span class="text-red-400">Vyraď kandidátov</span> z retailu a call centier.
+
+Lokalita – <span class="text-white font-bold">Trnava a okolie</span>.
+Zoznam obcí: Biely Kostol, Hrnčiarovce nad Parnou, Zavar, Bučany, Brestovany, Bohdanovce nad Trnavou, Majcichov, Opoj, Cífer, Voderady, Abramová... [a ďalších 20 obcí]"
+                                </code>
+                                <div class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-0 group-hover:bg-opacity-10 transition pointer-events-none"></div>
+                                <button onclick="copyToClipboard('finalResult', this)" class="absolute top-4 right-4 bg-gray-800 text-white hover:bg-red-600 border border-gray-600 px-3 py-1 rounded text-xs transition uppercase tracking-wider font-bold">
+                                    Kopírovať
+                                </button>
+                            </div>
+
+                            <!-- Location Tip -->
+                            <div class="mt-4 flex items-start space-x-3 bg-blue-50 p-3 rounded border border-blue-100">
+                                <i class="fas fa-map-marker-alt text-blue-500 mt-1"></i>
+                                <div>
+                                    <h4 class="text-sm font-bold text-blue-800">Prečo 30 obcí?</h4>
+                                    <p class="text-xs text-blue-700">Recru AI potrebuje kontext. "Okolie Trnavy" je pre AI abstraktné. Zoznam obcí definuje presný rádius dojazdu (30-50km), čo radikálne zvyšuje presnosť matchingu.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-900 text-white py-8 mt-12 border-t-4" style="border-color: var(--bhr-red);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <span class="font-bold text-lg">BALANCED <span style="color: var(--bhr-red)">HR</span></span>
+                <p class="text-gray-500 text-sm mt-1">&copy; 2025 Interný nástroj pre tréning AI.</p>
+            </div>
+            <div class="flex space-x-6 text-sm text-gray-400">
+                <span>Vytvorené pre Rasťa</span>
+                <span>•</span>
+                <span>Recru ATS Support</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-gray-800 text-white px-6 py-3 rounded-lg shadow-xl transform translate-y-20 opacity-0 transition-all duration-300 flex items-center border-l-4 border-green-500 z-50">
+        <i class="fas fa-check-circle text-green-500 mr-3"></i>
+        <div>
+            <h4 class="font-bold text-sm">Skopírované!</h4>
+            <p class="text-xs text-gray-300">Text je v schránke, môžeš ho vložiť (Ctrl+V).</p>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId, btnElement) {
+            const text = document.getElementById(elementId).innerText;
+            
+            // Create temporary textarea to handle copy
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+
+            // Visual Feedback on Element (Highlight)
+            const element = document.getElementById(elementId);
+            element.classList.add('copied-flash');
+            setTimeout(() => {
+                element.classList.remove('copied-flash');
+            }, 1000);
+
+            // Button Feedback
+            const originalIcon = btnElement.innerHTML;
+            btnElement.innerHTML = '<i class="fas fa-check text-green-600"></i>';
+            
+            // Toast Notification
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+                btnElement.innerHTML = originalIcon;
+            }, 3000);
+        }
+
+        // Add smooth scrolling specifically handling the sticky header offset
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const headerOffset = 100;
+                const elementPosition = targetElement.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+</body>
+</html>
